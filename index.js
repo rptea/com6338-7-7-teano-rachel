@@ -59,6 +59,16 @@ var questionsArr = [
             'Williams',
             'Red Bull',
         ]
+    },
+    {
+        question: 'Which team is represented by the prancing horse logo?',
+        answer: 'Ferrari',
+        options: [
+            'Alpine',
+            'Aston Martin',
+            'Mclaren',
+            'Ferrari',
+        ]
     }
 ]
 // Rules: do not use ALERT, CONFIRM and PROMPT. User only has 30 seconds to answer each question.
@@ -175,11 +185,20 @@ function endQuiz() {
     let percentage = Math.round((score / questionsArr.length) * 100);
     // Save to localStorage
     localStorage.setItem("previous-score", percentage);
-    // 
-}
-    // Save score to localStorage with key "previous-'score"
+    // Clear quiz container
+    quiz.innerHTML = "";
+    // Show final score
+    let scoreElement = document.createElement("p");
+    scoreElement.textContent = `Score: ${percentage}%`;
+    quiz.appendChild(scoreElement);
 
-    // Clear #quiz div
-    // Display score and start quiz button again*/
+    // Function restart quiz
+    let restartBtn = document.createElement("button");
+    restartBtn.textContent = "Restart Quiz";
+    restartBtn.id = "start-quiz";
+    restartBtn.addEventListener("click", startQuiz);
+    quiz.appendChild(restartBtn);
+}
+
 
 
